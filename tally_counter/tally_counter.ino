@@ -9,8 +9,8 @@
 Adafruit_SSD1306 display(128, 32, &Wire, -1);
 int counter = 0;
 
-int prevState_inc = LOW;
-int prevState_dec = LOW;
+int prevState_inc;
+int prevState_dec;
 int currentState_inc;
 int currentState_dec;
 
@@ -43,21 +43,18 @@ void loop() {
     if ((currentState_inc == LOW) && (prevState_inc == HIGH)) {
       counter++;
       Serial.println(counter);
-      delay(200);
     }
 
 
     if ((prevState_dec == HIGH) && (currentState_dec == LOW) && (counter != 0)) { //prevent negative value
       counter--;
       Serial.println(counter);
-      delay(200);
     }
 
 
     if((digitalRead(BUTTON_INC) == LOW) && (digitalRead(BUTTON_DEC) == LOW) ){
       counter=0;
       Serial.println(counter);
-      delay(400);
     }
 
 
